@@ -19,24 +19,22 @@ function TodoForm({ addTodo }: AddTodoProps) {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={title}
-          name="title"
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter title"
-        />
-        <input
-          type="date"
-          value={dueDate}
-          name="due_date"
-          onChange={(e) => setDueDate(e.target.value)}
-        />
-        <button type="submit">Add</button>
-      </form>
-    </>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={title}
+        name="title"
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Add a new task..."
+      />
+      <input
+        type="date"
+        value={dueDate}
+        name="due_date"
+        onChange={(e) => setDueDate(e.target.value)}
+      />
+      <button type="submit">Add</button>
+    </form>
   );
 }
 

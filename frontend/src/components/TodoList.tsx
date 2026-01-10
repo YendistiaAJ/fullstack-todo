@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api";
 import type { AxiosResponse } from "axios";
-import type { Todo } from "../types";
+import type { Todo, TodosResponse } from "../types";
 import TodoForm from "./TodoForm";
 
 function TodoList() {
@@ -9,9 +9,7 @@ function TodoList() {
 
   const fetchTodos = async () => {
     try {
-      const { data }: AxiosResponse<{ todos: Todo[] }> = await api.get(
-        "/todos"
-      );
+      const { data }: AxiosResponse<TodosResponse> = await api.get("/todos");
       setTodos(data.todos);
     } catch (error) {
       console.error("Error fetching todos", error);
@@ -21,6 +19,7 @@ function TodoList() {
   const addTodo = async (title: string, due_date: string, done: boolean) => {
     try {
       await api.post("/todos", { title, due_date, done });
+      await fetchTodos();
     } catch (error) {
       console.log("Error adding todos", error);
     }
@@ -55,8 +54,11 @@ function TodoList() {
     <>
       <div>
         <TodoForm addTodo={addTodo} />
-        {todos.map((todo: Todo, index: number) => (
-          <div key={index} className="todo-item">
+        {todos.map((todo, index) => (
+          <div
+            key={index}
+            className={`todo-item ${todo.done ? "completed" : ""}`}
+          >
             <input
               type="checkbox"
               id={`todo-${index}`}
@@ -64,13 +66,22 @@ function TodoList() {
               checked={todo.done}
               onChange={() => toggleTodoDone(index)}
             />
+
             <label htmlFor={`todo-${index}`} className="custom-label">
-              <div className="todo-description">
-                {todo.title}
-                {todo.due_date}
+              <div className="todo-text">
+                <span className={`todo-title ${todo.done ? "completed" : ""}`}>
+                  {todo.title}
+                </span>
+
+                {todo.due_date && (
+                  <span className="todo-date">Due: {todo.due_date}</span>
+                )}
               </div>
             </label>
-            <button onClick={() => deleteTodo(index)}>Delete</button>
+
+            <button onClick={() => deleteTodo(index)} className="delete">
+              Delete
+            </button>
           </div>
         ))}
       </div>
