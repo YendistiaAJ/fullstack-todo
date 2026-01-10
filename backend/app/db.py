@@ -16,6 +16,5 @@ def update_todo_by_index(idx: int, todo: Todo) -> Todo:
     memory_db["todos"][idx] = todo
     return todo
 
-def delete_todo_by_index(idx: int, todo: Todo) -> Todo:
-    memory_db["todos"].pop(idx)
-    return todo
+def delete_todo_by_index(idx: int) -> Todo:
+    return memory_db["todos"].pop(idx)

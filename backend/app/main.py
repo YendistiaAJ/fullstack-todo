@@ -33,8 +33,8 @@ def update_todo(id: int, todo: Todo):
     return update_todo_by_index(id, todo)
 
 @app.delete("/todos/{id}", response_model=Todo)
-def delete_todo(id: int, todo: Todo):
-    return delete_todo_by_index(id, todo)
+def delete_todo(id: int):
+    return delete_todo_by_index(id)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
