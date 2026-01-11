@@ -1,7 +1,11 @@
 import AppLogo from "../../../assets/app-logo.png";
 import Avatar from "../../../assets/avatar-default.png";
+import DropdownMenu from "./DropdownMenu";
+import { useState } from "react";
 
 function Header() {
+  const [showDropdownMenu, setShowDropdownMenu] = useState(false);
+
   return (
     <nav>
       <ul>
@@ -10,7 +14,14 @@ function Header() {
           My Todo List
         </li>
         <li>
-          <img src={Avatar} alt="User Profile Picture" />
+          <div className="user-menu-trigger">
+            <img
+              src={Avatar}
+              alt="User Profile Picture"
+              onClick={() => setShowDropdownMenu(!showDropdownMenu)}
+            />
+            <DropdownMenu showMenu={showDropdownMenu} />
+          </div>
         </li>
       </ul>
     </nav>
