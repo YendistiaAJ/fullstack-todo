@@ -1,9 +1,10 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 
-from models import Todo, Todos
-from db import get_all_todos, add_todo, update_todo_by_index, delete_todo_by_index
+from .models import Todo, Todos
+from .db import get_todos_by_filter, add_todo, update_todo_by_index, delete_todo_by_index
+from .enums import TodoFilter
 
 app = FastAPI()
 
@@ -21,8 +22,9 @@ app.add_middleware(
 )
 
 @app.get("/todos", response_model=Todos)
-def get_todos():
-    return Todos(todos=get_all_todos())
+def get_todos(filter_by: TodoFilter = Query(TodoFilter.ALL)):
+    todos = get_todos_by_filter(filter_by)
+    return Todos(todos=todos)
 
 @app.post("/todos", response_model=Todo)
 def create_todo(todo: Todo):
