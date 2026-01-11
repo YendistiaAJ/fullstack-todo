@@ -155,6 +155,7 @@ button.delete:hover {
   text-decoration: line-through;
 }
 
+/*
 @media (max-width: 480px) {
   .todo-item {
     flex-direction: column;
@@ -166,3 +167,4 @@ button.delete:hover {
     width: 100%;
   }
 }
+*/
