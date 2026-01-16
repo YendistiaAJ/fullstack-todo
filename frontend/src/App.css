@@ -23,13 +23,13 @@ main > div {
   color: #111827;
 }
 
-.login-main {
+.auth-main {
   display: flex;
   justify-content: center;
   padding: 24px 24px 32px;
 }
 
-.login-card {
+.auth-card {
   width: 100%;
   margin: 0 auto;
   background: white;
@@ -38,7 +38,7 @@ main > div {
   box-shadow: 0 12px 35px rgba(15, 23, 42, 0.1);
 }
 
-.login-title {
+.auth-title {
   font-size: 30px;
   font-weight: 700;
   color: #111827;
@@ -46,7 +46,7 @@ main > div {
   text-align: center;
 }
 
-.login-subtitle {
+.auth-subtitle {
   font-size: 14px;
   color: #6b7280;
   margin-bottom: 36px;
@@ -86,25 +86,27 @@ main > div {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.login-button:hover {
+.auth-button:hover {
   transform: translateY(-1px);
   box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
 }
 
-.login-footer-text {
+.auth-footer-text {
   margin-top: 16px;
   font-size: 12px;
   color: #9ca3af;
   text-align: center;
 }
 
-.login-footer-text a {
+.auth-footer-text span {
   color: #6b7280;
   font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
   transition: 400ms ease;
 }
 
-.login-footer-text a:hover {
+.auth-footer-text span:hover {
   color: #6366f1;
 }
 
